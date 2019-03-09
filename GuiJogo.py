@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter as tk
 
-class Gui():
+class GuiJogo():
     """Classe que define a interface gráfica da aplicação
     """
     x_pad = 5
@@ -81,4 +81,4 @@ class Gui():
 
 
     def run(self):
-        Gui.window.mainloop()
+        GuiJogo.window.mainloop()
