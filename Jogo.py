@@ -1,52 +1,53 @@
 # from GuiMain import *
 # from GuiJogo import *
-from GuiJogador import *
+from GuiLocal import *
 # from GuiLocal import *
 import Backend as core
 
 app = None
-entidade = "jogador"
+entidade = 'local'
 
 def view_command():
-    rows = core.viewJogador()
-    app.listJogador.delete(0, tk.END)
+    rows = core.viewLocal()
+    app.listLocal.delete(0, tk.END)
     for r in rows:
-        app.listJogador.insert(tk.END, r)
+        app.listLocal.insert(tk.END, r)
 
 def search_command():
-    app.listJogador.delete(0, tk.END)
-    rows = core.searchJogador(app.txtNome.get(), app.txtSobrenome.get())
+    app.listLocal.delete(0, tk.END)
+    rows = core.searchLocal(app.txtNome.get(), app.txtData.get())
     for r in rows:
-        app.listJogador.insert(tk.END, r)
+        app.listLocal.insert(tk.END, r)
 
 def insert_command():
-    core.insertJogador(app.txtNome.get(), app.txtSobrenome.get())
+    core.insertLocal(app.txtNome.get(), app.txtData.get(), app.txtQtde.get())
     view_command()
 
 def update_command():
-    core.updateJogador(selected[0],app.txtNome.get(),app.txtSobrenome.get())
+    core.updateLocal(selected[0],app.txtNome.get(), app.txtData.get(), app.txtQtde.get())
     view_command()
 
 def del_command():
     id = selected[0]
-    core.deleteJogador(id)
+    core.deleteLocal(id)
     view_command()
-
 
 def getSelectedRow(event):
     global selected
-    index = app.listJogador.curselection()[0]
-    selected = app.listJogador.get(index)
+    index = app.listLocal.curselection()[0]
+    selected = app.listLocal.get(index)
     app.entNome.delete(0, tk.END)
     app.entNome.insert(tk.END, selected[1])
-    app.entSobrenome.delete(0, tk.END)
-    app.entSobrenome.insert(tk.END, selected[2])
+    app.entData.delete(0, tk.END)
+    app.entData.insert(tk.END, selected[2])
+    app.entQtde.delete(0, tk.END)
+    app.entQtde.insert(tk.END, selected[3])
     return selected
 
 
 if __name__ == "__main__":
-    app = GuiJogador()
-    app.listJogador.bind('<<ListboxSelect>>', getSelectedRow)
+    app = GuiLocal()
+    app.listLocal.bind('<<ListboxSelect>>', getSelectedRow)
 
     app.btnViewAll.configure(command=view_command)
     app.btnBuscar.configure(command=search_command)

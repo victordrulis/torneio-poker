@@ -1,5 +1,4 @@
 import tkinter as tk
-import tkinter as tk
 
 class GuiJogador():
     """Classe que define a interface gráfica da aplicação

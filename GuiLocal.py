@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter as tk
 
-class Gui():
+class GuiLocal():
     """Classe que define a interface gráfica da aplicação
     """
     x_pad = 5
@@ -11,27 +11,24 @@ class Gui():
 
     #Criando a janela...
     window          = tk.Tk()
-    window.wm_title("Cadastro de Clientes")
+    window.wm_title("Cadastro de Local")
 
 
     #Criando variáveis que armazenarão o texto inserido pelo usuário...
     txtNome         = tk.StringVar()
-    txtSobrenome    = tk.StringVar()
-    txtEmail        = tk.StringVar()
-    txtCPF          = tk.StringVar()
+    txtData        = tk.StringVar()
+    txtQtde          = tk.StringVar()
 
 
     #Criando os objetos que estarão na janela...
     lblnome        = tk.Label(window, text="Nome")
-    lblsobrenome   = tk.Label(window, text="Sobrenome")
-    lblemail       = tk.Label(window, text="Email")
-    lblcpf         = tk.Label(window, text="CPF")
+    lblemail       = tk.Label(window, text="Data")
+    lblqtde         = tk.Label(window, text="Qtde Jogadores")
     entNome        = tk.Entry(window, textvariable=txtNome, width=width_entry)
-    entSobrenome   = tk.Entry(window, textvariable=txtSobrenome, width=width_entry)
-    entEmail       = tk.Entry(window, textvariable=txtEmail, width=width_entry)
-    entCPF         = tk.Entry(window, textvariable=txtCPF, width=width_entry)
-    listClientes   = tk.Listbox(window, width=100)
-    scrollClientes = tk.Scrollbar(window)
+    entData       = tk.Entry(window, textvariable=txtData, width=width_entry)
+    entQtde         = tk.Entry(window, textvariable=txtQtde, width=width_entry)
+    listLocal   = tk.Listbox(window, width=100)
+    scrollLocal = tk.Scrollbar(window)
     btnViewAll     = tk.Button(window, text="Ver todos")
     btnBuscar      = tk.Button(window, text="Buscar")
     btnInserir     = tk.Button(window, text="Inserir")
@@ -42,15 +39,13 @@ class Gui():
 
     #Associando os objetos a grid da janela...
     lblnome.grid(row=0,column=0)
-    lblsobrenome.grid(row=1,column=0)
     lblemail.grid(row=2,column=0)
-    lblcpf.grid(row=3, column=0)
+    lblqtde.grid(row=3, column=0)
     entNome.grid(row=0, column=1, padx=50, pady=50)
-    entSobrenome.grid(row=1, column=1)
-    entEmail.grid(row=2, column=1)
-    entCPF.grid(row=3, column=1)
-    listClientes.grid(row=0, column=2, rowspan=10)
-    scrollClientes.grid(row=0, column=6, rowspan=10)
+    entData.grid(row=2, column=1)
+    entQtde.grid(row=3, column=1)
+    listLocal.grid(row=0, column=2, rowspan=10)
+    scrollLocal.grid(row=0, column=6, rowspan=10)
     btnViewAll.grid(row=4, column=0, columnspan=2)
     btnBuscar.grid(row=5, column=0, columnspan=2)
     btnInserir.grid(row=6, column=0, columnspan=2)
@@ -61,8 +56,8 @@ class Gui():
 
 
     #Associando a Scrollbar com a Listbox...
-    listClientes.configure(yscrollcommand=scrollClientes.set)
-    scrollClientes.configure(command=listClientes.yview)
+    listLocal.configure(yscrollcommand=scrollLocal.set)
+    scrollLocal.configure(command=listLocal.yview)
 
 
     #Adicionando um pouco de SWAG a interface...
@@ -81,4 +76,4 @@ class Gui():
 
 
     def run(self):
-        Gui.window.mainloop()
+        GuiLocal.window.mainloop()

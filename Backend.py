@@ -90,13 +90,6 @@ def updateLocal(id, nome, data, qtd_jogadores):
     trans.persist()
     trans.disconnect()
 
-def insertLocal(nome, data, qtd_jogadores):
-    trans = TransactionObject()
-    trans.connect()
-    trans.execute("INSERT INTO jogador VALUES(?, ?)", (nome, sobrenome))
-    trans.persist()
-    trans.disconnect()
-
 def viewJogador():
     trans = TransactionObject()
     trans.connect()
@@ -105,10 +98,10 @@ def viewJogador():
     trans.disconnect()
     return rows
 
-def viewEntidade(entidade):
+def viewLocal():
     trans = TransactionObject()
     trans.connect()
-    trans.execute("SELECT * FROM ?", (entidade))
+    trans.execute("SELECT * FROM local")
     rows = trans.fetchall()
     trans.disconnect()
     return rows
@@ -137,10 +130,24 @@ def searchLocal(nome = "", data = "" ):
     trans.disconnect()
     return rows
 
-def deleteEntidade(id, entidade):
+def deleteJogador(id):
     trans = TransactionObject()
     trans.connect()
-    trans.execute("DELETE FROM ? WHERE id = ?", (entidade, id))
+    trans.execute("DELETE FROM jogador WHERE id = ?", (id,))
+    trans.persist()
+    trans.disconnect()
+
+def deleteLocal(id):
+    trans = TransactionObject()
+    trans.connect()
+    trans.execute("DELETE FROM local WHERE id = ?", (id,))
+    trans.persist()
+    trans.disconnect()
+
+def deleteJogo(id):
+    trans = TransactionObject()
+    trans.connect()
+    trans.execute("DELETE FROM jogo WHERE id = ?", (id,))
     trans.persist()
     trans.disconnect()
 
