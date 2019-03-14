@@ -25,8 +25,8 @@ if __name__ == "__main__":
     appJogo = GuiJogo()
     appLocal = GuiLocal()
 
-    app.btnJogador.configure(command=jogadorCommand)
-    app.btnJogo.configure(command=jogoCommand)
-    app.btnLocal.configure(command=localCommand)
-    app.btnClose.configure(command=app.window.destroy)
+    app.btnJogador.configure(command = jogadorCommand)
+    app.btnJogo.configure(command = jogoCommand)
+    app.btnLocal.configure(command = localCommand)
+    app.btnClose.configure(command = app.window.destroy)
     app.run()

@@ -36,7 +36,6 @@ class TransactionObject():
             return False
 
 
-
 def initDB():
     trans = TransactionObject()
     trans.connect()
@@ -98,6 +97,14 @@ def viewJogador():
     trans.disconnect()
     return rows
 
+def viewJogo():
+    trans = TransactionObject()
+    trans.connect()
+    trans.execute("SELECT * FROM jogo")
+    rows = trans.fetchall()
+    trans.disconnect()
+    return rows
+
 def viewLocal():
     trans = TransactionObject()
     trans.connect()
@@ -106,26 +113,26 @@ def viewLocal():
     trans.disconnect()
     return rows
 
-def searchJogador(nome = "", sobrenome = ""):
+def searchJogador(id = 0, nome = "", sobrenome = ""):
     trans = TransactionObject()
     trans.connect()
-    trans.execute("SELECT * FROM jogador WHERE nome LIKE ? or sobrenome LIKE ?", (nome, sobrenome))
+    trans.execute("SELECT * FROM jogador WHERE id = ? or nome LIKE ? or sobrenome LIKE ?", (id, nome, sobrenome))
     rows = trans.fetchall()
     trans.disconnect()
     return rows
 
-def searchJogo(nome = "", sobrenome = ""):
+def searchJogo(id = 0, nome = "", sobrenome = ""):
     trans = TransactionObject()
     trans.connect()
-    trans.execute("SELECT * FROM jogador WHERE nome LIKE ? or sobrenome LIKE ?", (nome, sobrenome))
+    trans.execute("SELECT * FROM jogo WHERE id = ? or nome LIKE ? or sobrenome LIKE ?", (id, nome, sobrenome))
     rows = trans.fetchall()
     trans.disconnect()
     return rows
 
-def searchLocal(nome = "", data = "" ):
+def searchLocal(id = 0, nome = "", data = "", idLocal = 0):
     trans = TransactionObject()
     trans.connect()
-    trans.execute("SELECT * FROM local WHERE nome LIKE ? or data BETWEEN ? AND date('now')", (nome, data))
+    trans.execute("SELECT * FROM local WHERE id = ? or nome LIKE ? or data BETWEEN ? AND date('now')", (id, nome, data))
     rows = trans.fetchall()
     trans.disconnect()
     return rows
@@ -150,5 +157,13 @@ def deleteJogo(id):
     trans.execute("DELETE FROM jogo WHERE id = ?", (id,))
     trans.persist()
     trans.disconnect()
+
+def classificar(idLocal):
+    # jogadores[] = searchJogador
+    # sorted(student_tuples, key=lambda student: student[2])   # sort por saldo
+    print("Ola")
+
+def calculaPontosJogadores(idLocal):
+    pontuacao = ((qtdJogadores - classificacao) + (saldo/4))
 
 initDB()
